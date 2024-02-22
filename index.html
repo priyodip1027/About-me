@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Elective Subjects Preference Poll
+    </title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+</head>
+<body>
+<div class="container my-5">
+    <h1>Elective Subjects Preference Poll</h1>
+</div>
+<div class="container-fluid">
+    <form>
+        <div class="row">
+            <div class="col" style="text-align: center">
+                <h3 class="my-3">Deep Learning</h3>
+                <img src="img.jpg" style="height: 50vh; width: 20vw;" alt="Deep Learning">
+                <button class="btn btn-primary" id="dl" type="button">Vote</button>
+            </div>
+            <div class="col" style="text-align: center">
+                <h3 class="my-3">Software Testing and Analysis</h3>
+                <img src="img.jpg" style="height: 50vh; width: 20vw;" alt="Software Testing and Analysis">
+                <button class="btn btn-primary" id="sta" type="button">Vote</button>
+            </div>
+            <div class="col" style="text-align: center">
+                <h3 class="my-3">Digital Image Processing</h3>
+                <img src="img.jpg" style="height: 50vh; width: 20vw;" alt="Digital Image Processing">
+                <button class="btn btn-primary" id="dip" type="button">Vote</button>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Submit Votes</button>
+    </form>
+</div>
+
+<div class="container my-5">
+    <h2>Votes Results</h2>
+    <p><b>Deep Learning:</b> <span id="dlcount"></span></p>
+    <p><b>Software Testing and Analysis:</b> <span id="stacount"></span></p>
+    <p><b>Digital Image Processing:</b> <span id="dipcount"></span></p>
+    <span id="notoffered"></span>
+</div>
+
+<script src="./bootstrap.bundle.min.js"></script>
+<script src="./jquery-3.7.1.min.js.js"></script>
+<script>
+    $(document).ready(function() {
+        let dl = 5;
+        let sta = 5;
+        let dip = 5;
+
+        $.fn.pushUpdates = function() {
+            $('#dlcount').empty();
+            $('#dlcount').append(dl);
+            $('#stacount').empty();
+            $('#stacount').append(sta);
+            $('#dipcount').empty();
+            $('#dipcount').append(dip);
+
+            const notoffered = $('#notoffered');
+            notoffered.empty();
+            if(dl < 10) {
+                notoffered.append('Deep Learning is not offered <br>');
+            }
+            if(sta < 10) {
+                notoffered.append('Software Testing and Analysis is not offered <br>');
+            }
+            if(dip < 10) {
+                notoffered.append('Digital Image Processing is not offered <br>');
+            }
+        };
+
+        $('#dl').click(function(e) {
+            e.preventDefault();
+            dl++;
+            $.fn.pushUpdates();
+        });
+
+        $('#sta').click(function(e) {
+            e.preventDefault();
+            sta++;
+            $.fn.pushUpdates();
+        });
+
+        $('#dip').click(function(e) {
+            e.preventDefault();
+            dip++;
+            $.fn.pushUpdates();
+        });
+
+        $.fn.pushUpdates();
+    });
+</script>
+</body>
+
+
+</html>
